@@ -1,0 +1,85 @@
+.grid {
+  padding: 3rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--fundo2);
+  border: 1px solid var(--borda);
+  padding: 1.8rem;
+  transition: border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.card:hover { border-color: var(--amarelo); transform: translateY(-3px); }
+.pendente { opacity: 0.4; border-style: dashed; cursor: default; }
+.pendente:hover { border-color: var(--borda); transform: none; }
+
+.tipo {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+}
+
+.teorica { background: rgba(26,107,58,0.3); color: var(--verde-claro); }
+.pratica { background: rgba(245,200,0,0.2); color: var(--amarelo); }
+
+.num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: rgba(255,255,255,0.07);
+  margin-bottom: 0.5rem;
+}
+
+.titulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.8rem;
+}
+
+.desc {
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.pts {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--borda);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--texto-suave);
+  letter-spacing: 0.1em;
+}
+
+.pts span { color: var(--amarelo); font-weight: 700; }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  margin-top: 0.8rem;
+}
+
+.badge::before { content: '●'; font-size: 0.5rem; }
+.aberta { background: rgba(45,158,88,0.15); color: var(--verde-claro); }
+.encerrada { background: rgba(255,255,255,0.05); color: var(--texto-suave); }
+
+@media (max-width: 768px) {
+  .grid { padding: 2rem; grid-template-columns: 1fr; }
+}
