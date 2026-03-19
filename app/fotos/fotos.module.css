@@ -1,0 +1,51 @@
+.grid {
+  padding: 3rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: var(--fundo2);
+  border: 1px solid var(--borda);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.card:hover { border-color: var(--verde-claro); }
+.card:hover .overlay { opacity: 1; }
+
+.placeholder {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,107,58,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .grid { padding: 2rem; }
+}
