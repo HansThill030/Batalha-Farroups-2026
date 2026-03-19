@@ -1,0 +1,71 @@
+.locked {
+  text-align: center;
+  padding: 6rem 2rem;
+  color: var(--texto-suave);
+}
+
+.lockIcon {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.locked p {
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.hint {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.05em;
+  color: var(--verde-claro) !important;
+}
+
+.grid {
+  padding: 3rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 1000px;
+}
+
+.card {
+  background: var(--fundo2);
+  border: 1px solid var(--borda);
+  padding: 2rem;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.card:hover { border-color: var(--amarelo); transform: translateY(-3px); }
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.cardTitulo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.footer {
+  padding: 0 5rem 3rem;
+}
+
+@media (max-width: 768px) {
+  .grid { padding: 2rem; grid-template-columns: 1fr; }
+  .footer { padding: 0 2rem 2rem; }
+}
