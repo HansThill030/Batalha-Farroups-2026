@@ -1,0 +1,102 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: var(--fundo2);
+  border: 1px solid var(--borda);
+  width: 100%;
+  max-width: 420px;
+  padding: 3rem;
+  animation: slideUp 0.3s ease;
+  position: relative;
+  margin: 1rem;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--texto-suave);
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  transition: color 0.2s;
+}
+
+.close:hover { color: var(--texto); }
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: var(--texto-suave);
+  font-style: italic;
+  margin-bottom: 2rem;
+}
+
+.formGroup { margin-bottom: 1.2rem; }
+
+.label {
+  display: block;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  width: 100%;
+  background: var(--fundo3);
+  border: 1px solid var(--borda);
+  color: var(--texto);
+  padding: 0.8rem 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.8rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus { border-color: var(--verde-claro); }
+
+.erro {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--vermelho);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  font-style: italic;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.noteLink {
+  color: var(--verde-claro);
+  cursor: pointer;
+}
