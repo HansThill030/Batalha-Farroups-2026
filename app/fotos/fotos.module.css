@@ -1,0 +1,11 @@
+.grid { padding: 2rem 5rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem; }
+
+.card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden; transition: border-color 0.2s; }
+.card:hover { border-color: rgba(255,255,255,0.2); }
+.card:hover .overlay { opacity: 1; }
+
+.placeholder { font-size: 0.72rem; color: rgba(255,255,255,0.12); text-align: center; font-weight: 500; line-height: 1.6; }
+
+.overlay { position: absolute; inset: 0; background: rgba(224,32,32,0.5); display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transition: opacity 0.25s; }
+
+@media (max-width: 768px) { .grid { padding: 2rem 1.25rem; } }
