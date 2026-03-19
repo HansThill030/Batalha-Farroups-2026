@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batalha dos Farroups 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1a6b3a;
+    --verde-claro: #2d9e58;
+    --amarelo: #f5c800;
+    --vermelho: #c0392b;
+    --fundo: #0d0d0d;
+    --fundo2: #141414;
+    --fundo3: #1c1c1c;
+    --texto: #f0ece0;
+    --texto-suave: #a09880;
+    --borda: #2a2a2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--fundo);
+    color: var(--texto);
+    font-family: 'Crimson Pro', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(13,13,13,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--borda);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2.5rem;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    color: var(--amarelo);
+    cursor: pointer;
+  }
+
+  .nav-logo span { color: var(--verde-claro); }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    text-decoration: none;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--amarelo); }
+
+  .nav-login {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--fundo);
+    background: var(--amarelo);
+    border: none;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .nav-login:hover { background: var(--verde-claro); color: #fff; }
+
+  /* PAGES */
+  .page { display: none; padding-top: 64px; min-height: 100vh; animation: fadeIn 0.4s ease; }
+  .page.active { display: block; }
+
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ==================== HOME ==================== */
+  .hero {
+    position: relative;
+    height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,107,58,0.18) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 80%, rgba(245,200,0,0.07) 0%, transparent 60%),
+      var(--fundo);
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(255,255,255,0.025) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(255,255,255,0.025) 60px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 5rem;
+    max-width: 750px;
+  }
+
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--verde-claro);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 9vw, 8rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: var(--texto);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title .accent { color: var(--amarelo); }
+  .hero-title .accent2 { color: var(--verde-claro); }
+
+  .hero-desc {
+    font-size: 1.2rem;
+    color: var(--texto-suave);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    max-width: 480px;
+    font-style: italic;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--amarelo);
+    color: #000;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 700;
+  }
+
+  .btn-primary:hover { background: var(--verde-claro); color: #fff; transform: translateY(-2px); }
+
+  .btn-secondary {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--texto);
+    border: 1px solid var(--borda);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--amarelo); color: var(--amarelo); }
+
+  .hero-number {
+    position: absolute;
+    right: 5rem;
+    bottom: 4rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14rem;
+    line-height: 1;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: -0.05em;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--fundo2);
+    border-top: 1px solid var(--borda);
+    border-bottom: 1px solid var(--borda);
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+
+  .stat-item {
+    padding: 2rem 4rem;
+    text-align: center;
+    border-right: 1px solid var(--borda);
+    flex: 1;
+    max-width: 220px;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--amarelo);
+    line-height: 1;
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-top: 0.3rem;
+    display: block;
+  }
+
+  /* AVISOS HOME */
+  .home-section {
+    padding: 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--borda);
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    color: var(--texto);
+  }
+
+  .section-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+  }
+
+  /* ==================== PLACAR ==================== */
+  .page-header {
+    padding: 4rem 5rem 2rem;
+    border-bottom: 1px solid var(--borda);
+    background: var(--fundo2);
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--texto-suave);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+
+  .ranking-grid {
+    padding: 3rem 5rem;
+    display: grid;
+    gap: 1rem;
+    max-width: 900px;
+  }
+
+  .rank-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--fundo2);
+    border: 1px solid var(--borda);
+    padding: 1.2rem 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rank-card:hover { border-color: var(--verde-claro); transform: translateX(4px); }
+
+  .rank-card.gold { border-left: 3px solid var(--amarelo); }
+  .rank-card.silver { border-left: 3px solid #aaa; }
+  .rank-card.bronze { border-left: 3px solid #cd7f32; }
+
+  .rank-pos {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--texto-suave);
+    width: 2.5rem;
+    text-align: center;
+  }
+
+  .rank-card.gold .rank-pos { color: var(--amarelo); }
+  .rank-card.silver .rank-pos { color: #ccc; }
+  .rank-card.bronze .rank-pos { color: #cd7f32; }
+
+  .rank-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+
+  .rank-name {
+    flex: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+  }
+
+  .rank-pts {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--amarelo);
+    font-weight: 700;
+  }
+
+  .rank-bar-wrap {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--borda);
+  }
+
+  .rank-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--verde), var(--verde-claro));
+    transition: width 1s ease;
+  }
+
+  /* ==================== TAREFAS ==================== */
+  .tarefas-grid {
+    padding: 3rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .tarefa-card {
+    background: var(--fundo2);
+    border: 1px solid var(--borda);
+    padding: 1.8rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+
+  .tarefa-card:hover { border-color: var(--amarelo); transform: translateY(-3px); }
+
+  .tarefa-tipo {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+  }
+
+  .tarefa-tipo.teorica { background: rgba(26,107,58,0.3); color: var(--verde-claro); }
+  .tarefa-tipo.pratica { background: rgba(245,200,0,0.2); color: var(--amarelo); }
+
+  .tarefa-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    line-height: 1;
+    color: rgba(255,255,255,0.07);
+    margin-bottom: 0.5rem;
+  }
+
+  .tarefa-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+  }
+
+  .tarefa-desc {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .tarefa-pts {
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--borda);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--texto-suave);
+    letter-spacing: 0.1em;
+  }
+
+  .tarefa-pts span { color: var(--amarelo); font-weight: 700; }
+
+  /* STATUS BADGE */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.7rem;
+    margin-top: 0.8rem;
+  }
+
+  .status-badge.aberta { background: rgba(45,158,88,0.15); color: var(--verde-claro); }
+  .status-badge.encerrada { background: rgba(255,255,255,0.05); color: var(--texto-suave); }
+  .status-badge::before { content: '●'; font-size: 0.5rem; }
+
+  /* ==================== AVISOS ==================== */
+  .avisos-list {
+    padding: 3rem 5rem;
+    display: grid;
+    gap: 1px;
+    background: var(--borda);
+    max-width: 900px;
+  }
+
+  .aviso-item {
+    background: var(--fundo);
+    padding: 2rem 2.5rem;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 2rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+
+  .aviso-item:hover { background: var(--fundo2); }
+
+  .aviso-data {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--texto-suave);
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .aviso-data .dia { font-size: 2rem; color: var(--amarelo); display: block; line-height: 1; }
+
+  .aviso-content {}
+  .aviso-titulo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.4rem;
+  }
+
+  .aviso-texto {
+    font-size: 1rem;
+    color: var(--texto-suave);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .aviso-tag {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.5rem;
+    background: rgba(26,107,58,0.25);
+    color: var(--verde-claro);
+    margin-bottom: 0.4rem;
+  }
+
+  /* ==================== FOTOS ==================== */
+  .fotos-grid {
+    padding: 3rem 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .foto-card {
+    background: var(--fundo2);
+    border: 1px solid var(--borda);
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+
+  .foto-card:hover { border-color: var(--verde-claro); }
+  .foto-card:hover .foto-overlay { opacity: 1; }
+
+  .foto-placeholder {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.1);
+    text-align: center;
+  }
+
+  .foto-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26,107,58,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  /* ==================== LOGIN MODAL ==================== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(6px);
+    z-index: 200;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--fundo2);
+    border: 1px solid var(--borda);
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem;
+    animation: slideUp 0.3s ease;
+    position: relative;
+  }
+
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--texto-suave);
+    font-size: 1.2rem;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+    transition: color 0.2s;
+  }
+
+  .modal-close:hover { color: var(--texto); }
+
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.4rem;
+  }
+
+  .modal-subtitle {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  .form-group { margin-bottom: 1.2rem; }
+
+  .form-label {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texto-suave);
+    margin-bottom: 0.5rem;
+  }
+
+  .form-input {
+    width: 100%;
+    background: var(--fundo3);
+    border: 1px solid var(--borda);
+    color: var(--texto);
+    padding: 0.8rem 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: var(--verde-claro); }
+
+  .modal-note {
+    font-size: 0.85rem;
+    color: var(--texto-suave);
+    font-style: italic;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .modal-note a {
+    color: var(--verde-claro);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  /* ==================== AREA PROFESSOR ==================== */
+  .prof-grid {
+    padding: 3rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 1000px;
+  }
+
+  .prof-card {
+    background: var(--fundo2);
+    border: 1px solid var(--borda);
+    padding: 2rem;
+    cursor: pointer;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .prof-card:hover { border-color: var(--amarelo); transform: translateY(-3px); }
+
+  .prof-card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .prof-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+  }
+
+  .prof-card-desc {
+    font-size: 0.95rem;
+    color: var(--texto-suave);
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  .locked-overlay {
+    position: relative;
+  }
+
+  .locked-msg {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--texto-suave);
+  }
+
+  .locked-msg .lock-icon { font-size: 3rem; display: block; margin-bottom: 1rem; }
+  .locked-msg p { font-style: italic; font-size: 1.1rem; margin-bottom: 1.5rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero-content { padding: 0 2rem; }
+    .home-section, .ranking-grid, .tarefas-grid, .fotos-grid, .avisos-list, .prof-grid { padding: 2rem; }
+    .page-header { padding: 2rem; }
+    .hero-number { display: none; }
+    .stat-item { padding: 1.5rem 2rem; }
+    .prof-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .aviso-item { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Batalha <span>Farroups</span></div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">Início</a></li>
+    <li><a onclick="showPage('placar')" id="nav-placar">Placar</a></li>
+    <li><a onclick="showPage('tarefas')" id="nav-tarefas">Tarefas</a></li>
+    <li><a onclick="showPage('avisos')" id="nav-avisos">Avisos</a></li>
+    <li><a onclick="showPage('fotos')" id="nav-fotos">Fotos</a></li>
+    <li><a onclick="showPage('professores')" id="nav-professores">Professores</a></li>
+  </ul>
+  <button class="nav-login" onclick="openModal()">Área do Professor</button>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Edição 2026 · Nono Ano</div>
+      <h1 class="hero-title">
+        Batalha<br>
+        dos<br>
+        <span class="accent">Far</span><span class="accent2">roups</span>
+      </h1>
+      <p class="hero-desc">A competição que coloca à prova o conhecimento, a criatividade e o espírito de equipe dos alunos do nono ano.</p>
+      <div class="hero-btns">
+        <button class="btn-primary" onclick="showPage('tarefas')">Ver Tarefas</button>
+        <button class="btn-secondary" onclick="showPage('placar')">Placar Atual</button>
+      </div>
+    </div>
+    <div class="hero-number">26</div>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-num">55+</span>
+      <span class="stat-label">Tarefas Teóricas</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">15+</span>
+      <span class="stat-label">Desafios Práticos</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">1000</span>
+      <span class="stat-label">Pontos p/ 1º Lugar</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">2026</span>
+      <span class="stat-label">Nova Edição</span>
+    </div>
+  </div>
+
+  <div class="home-section">
+    <div class="section-header">
+      <h2 class="section-title">Últimos Avisos</h2>
+      <span class="section-tag">Atualizações recentes</span>
+    </div>
+    <div style="display:grid;gap:1px;background:var(--borda)">
+      <div class="aviso-item">
+        <div class="aviso-data"><span class="dia">18</span>MAR<br>2026</div>
+        <div class="aviso-content">
+          <span class="aviso-tag">Oficial</span>
+          <div class="aviso-titulo">Bem-vindos à Batalha dos Farroups 2026!</div>
+          <div class="aviso-texto">O site oficial da competição está no ar. Em breve as primeiras tarefas serão publicadas. Fiquem atentos!</div>
+        </div>
+      </div>
+      <div class="aviso-item">
+        <div class="aviso-data"><span class="dia">18</span>MAR<br>2026</div>
+        <div class="aviso-content">
+          <span class="aviso-tag">Regras</span>
+          <div class="aviso-titulo">Regras e Pontuação</div>
+          <div class="aviso-texto">1º correto: 1000 pts · 2º correto: 700 pts · 3º correto: 500 pts · Demais corretos: 300 pts</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PLACAR ==================== -->
+<div class="page" id="page-placar">
+  <div class="page-header">
+    <h1 class="page-title">Placar <span style="color:var(--amarelo)">Geral</span></h1>
+    <p class="page-subtitle">Classificação atualizada em tempo real</p>
+  </div>
+  <div class="ranking-grid">
+    <div class="rank-card gold">
+      <div class="rank-pos">1</div>
+      <div class="rank-color" style="background:#f5c800"></div>
+      <div class="rank-name">Equipe Ouro</div>
+      <div class="rank-pts">4.200 pts</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:100%"></div></div>
+    </div>
+    <div class="rank-card silver">
+      <div class="rank-pos">2</div>
+      <div class="rank-color" style="background:#aaa"></div>
+      <div class="rank-name">Equipe Prata</div>
+      <div class="rank-pts">3.850 pts</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:91%"></div></div>
+    </div>
+    <div class="rank-card bronze">
+      <div class="rank-pos">3</div>
+      <div class="rank-color" style="background:#cd7f32"></div>
+      <div class="rank-name">Equipe Bronze</div>
+      <div class="rank-pts">3.300 pts</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:78%"></div></div>
+    </div>
+    <div class="rank-card">
+      <div class="rank-pos">4</div>
+      <div class="rank-color" style="background:#2d9e58"></div>
+      <div class="rank-name">Equipe Verde</div>
+      <div class="rank-pts">2.900 pts</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:69%"></div></div>
+    </div>
+    <div class="rank-card">
+      <div class="rank-pos">5</div>
+      <div class="rank-color" style="background:#e74c3c"></div>
+      <div class="rank-name">Equipe Vermelha</div>
+      <div class="rank-pts">2.400 pts</div>
+      <div class="rank-bar-wrap"><div class="rank-bar" style="width:57%"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TAREFAS ==================== -->
+<div class="page" id="page-tarefas">
+  <div class="page-header">
+    <h1 class="page-title">Tarefas <span style="color:var(--verde-claro)">& Desafios</span></h1>
+    <p class="page-subtitle">Teóricas e práticas — ganhe pontos sendo o primeiro a acertar</p>
+  </div>
+  <div class="tarefas-grid">
+    <div class="tarefa-card">
+      <span class="tarefa-tipo pratica">Prática</span>
+      <div class="tarefa-num">01</div>
+      <div class="tarefa-title">Desafio de Embaixadinhas</div>
+      <div class="tarefa-desc">Grave um vídeo mostrando a maior quantidade de embaixadinhas consecutivas. Envie pelo link abaixo.</div>
+      <div class="tarefa-pts">1º: <span>2000 pts</span> · 2º: <span>1400 pts</span> · 3º: <span>1000 pts</span></div>
+      <span class="status-badge aberta">Aberta</span>
+    </div>
+    <div class="tarefa-card">
+      <span class="tarefa-tipo teorica">Teórica</span>
+      <div class="tarefa-num">01</div>
+      <div class="tarefa-title">Questão Teórica 01</div>
+      <div class="tarefa-desc">A primeira questão teórica da edição 2026. Responda por e-mail da batalha até o prazo.</div>
+      <div class="tarefa-pts">1º: <span>1000 pts</span> · 2º: <span>700 pts</span> · 3º: <span>500 pts</span></div>
+      <span class="status-badge aberta">Aberta</span>
+    </div>
+    <div class="tarefa-card">
+      <span class="tarefa-tipo teorica">Teórica</span>
+      <div class="tarefa-num">02</div>
+      <div class="tarefa-title">Questão Teórica 02</div>
+      <div class="tarefa-desc">Segunda questão teórica. Fique atento ao prazo de entrega publicado no aviso oficial.</div>
+      <div class="tarefa-pts">1º: <span>1000 pts</span> · 2º: <span>700 pts</span> · 3º: <span>500 pts</span></div>
+      <span class="status-badge encerrada">Encerrada</span>
+    </div>
+    <div class="tarefa-card" style="border-style:dashed;opacity:0.4;cursor:default">
+      <span class="tarefa-tipo teorica">Teórica</span>
+      <div class="tarefa-num">03</div>
+      <div class="tarefa-title">Em breve...</div>
+      <div class="tarefa-desc">Esta tarefa ainda não foi publicada.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== AVISOS ==================== -->
+<div class="page" id="page-avisos">
+  <div class="page-header">
+    <h1 class="page-title">Avisos <span style="color:var(--verde-claro)">Oficiais</span></h1>
+    <p class="page-subtitle">Comunicados e atualizações da organização</p>
+  </div>
+  <div class="avisos-list">
+    <div class="aviso-item">
+      <div class="aviso-data"><span class="dia">18</span>MAR<br>2026</div>
+      <div class="aviso-content">
+        <span class="aviso-tag">Oficial</span>
+        <div class="aviso-titulo">Site da Batalha dos Farroups 2026 no Ar!</div>
+        <div class="aviso-texto">O site oficial da competição foi lançado. Aqui você encontrará todas as tarefas, placar, avisos e fotos da edição 2026. Boa sorte a todos!</div>
+      </div>
+    </div>
+    <div class="aviso-item">
+      <div class="aviso-data"><span class="dia">18</span>MAR<br>2026</div>
+      <div class="aviso-content">
+        <span class="aviso-tag">Regras</span>
+        <div class="aviso-titulo">Sistema de Pontuação 2026</div>
+        <div class="aviso-texto">As regras de pontuação seguem o padrão da edição anterior: tarefas teóricas valem até 1000 pontos e práticas até 2000, distribuídos por ordem de entrega correta.</div>
+      </div>
+    </div>
+    <div class="aviso-item">
+      <div class="aviso-data"><span class="dia">18</span>MAR<br>2026</div>
+      <div class="aviso-content">
+        <span class="aviso-tag">Prazo</span>
+        <div class="aviso-titulo">Prazo de Entrega das Tarefas</div>
+        <div class="aviso-texto">Todas as tarefas devem ser enviadas para o e-mail oficial da batalha até às 00h do dia seguinte à publicação, salvo aviso contrário.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== FOTOS ==================== -->
+<div class="page" id="page-fotos">
+  <div class="page-header">
+    <h1 class="page-title">Galeria <span style="color:var(--amarelo)">de Fotos</span></h1>
+    <p class="page-subtitle">Momentos da Batalha dos Farroups 2026</p>
+  </div>
+  <div class="fotos-grid">
+    <div class="foto-card"><div class="foto-placeholder">Foto 01<br>Em breve</div><div class="foto-overlay">Ver foto</div></div>
+    <div class="foto-card"><div class="foto-placeholder">Foto 02<br>Em breve</div><div class="foto-overlay">Ver foto</div></div>
+    <div class="foto-card"><div class="foto-placeholder">Foto 03<br>Em breve</div><div class="foto-overlay">Ver foto</div></div>
+    <div class="foto-card"><div class="foto-placeholder">Foto 04<br>Em breve</div><div class="foto-overlay">Ver foto</div></div>
+    <div class="foto-card"><div class="foto-placeholder">Foto 05<br>Em breve</div><div class="foto-overlay">Ver foto</div></div>
+    <div class="foto-card"><div class="foto-placeholder">Foto 06<br>Em breve</div><div class="foto-overlay">Ver foto</div></div>
+  </div>
+</div>
+
+<!-- ==================== PROFESSORES ==================== -->
+<div class="page" id="page-professores">
+  <div class="page-header">
+    <h1 class="page-title">Área dos <span style="color:var(--amarelo)">Professores</span></h1>
+    <p class="page-subtitle">Gerencie tarefas, placar e avisos da competição</p>
+  </div>
+
+  <!-- Locked state -->
+  <div id="prof-locked">
+    <div class="locked-msg">
+      <span class="lock-icon">🔒</span>
+      <p>Faça login para acessar a área administrativa e gerenciar a Batalha dos Farroups.</p>
+      <button class="btn-primary" onclick="openModal()">Entrar como Professor</button>
+    </div>
+  </div>
+
+  <!-- Unlocked state (hidden by default) -->
+  <div id="prof-unlocked" style="display:none">
+    <div class="prof-grid">
+      <div class="prof-card">
+        <span class="prof-card-icon">📋</span>
+        <div class="prof-card-title">Publicar Tarefa</div>
+        <div class="prof-card-desc">Crie e publique novas tarefas teóricas ou práticas com pontuação e prazo.</div>
+      </div>
+      <div class="prof-card">
+        <span class="prof-card-icon">🏆</span>
+        <div class="prof-card-title">Atualizar Placar</div>
+        <div class="prof-card-desc">Adicione ou edite pontuações das equipes após a correção das tarefas.</div>
+      </div>
+      <div class="prof-card">
+        <span class="prof-card-icon">📢</span>
+        <div class="prof-card-title">Novo Aviso</div>
+        <div class="prof-card-desc">Publique comunicados e atualizações oficiais visíveis para todos os alunos.</div>
+      </div>
+      <div class="prof-card">
+        <span class="prof-card-icon">🖼️</span>
+        <div class="prof-card-title">Gerenciar Fotos</div>
+        <div class="prof-card-desc">Faça upload de fotos e organize a galeria de momentos da competição.</div>
+      </div>
+    </div>
+    <div style="padding:0 5rem 2rem">
+      <button class="btn-secondary" onclick="logout()">Sair da área administrativa</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MODAL LOGIN ==================== -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title">Área do <span style="color:var(--amarelo)">Professor</span></div>
+    <p class="modal-subtitle">Login opcional — apenas para gestão da batalha</p>
+    <div class="form-group">
+      <label class="form-label">Usuário</label>
+      <input class="form-input" type="text" placeholder="professor@escola.com" id="input-user">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Senha</label>
+      <input class="form-input" type="password" placeholder="••••••••" id="input-pass">
+    </div>
+    <button class="btn-primary" style="width:100%;margin-top:0.5rem" onclick="doLogin()">Entrar</button>
+    <p class="modal-note">Não tem acesso? <a onclick="closeModal()">Continuar como visitante →</a></p>
+  </div>
+</div>
+
+<script>
+  function showPage(name) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    document.getElementById('page-' + name).classList.add('active');
+    document.getElementById('nav-' + name).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function openModal() {
+    document.getElementById('modal-overlay').classList.add('open');
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('open');
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  function doLogin() {
+    const user = document.getElementById('input-user').value;
+    const pass = document.getElementById('input-pass').value;
+    if (user && pass) {
+      closeModal();
+      document.getElementById('prof-locked').style.display = 'none';
+      document.getElementById('prof-unlocked').style.display = 'block';
+      showPage('professores');
+    } else {
+      document.getElementById('input-user').style.borderColor = 'var(--vermelho)';
+    }
+  }
+
+  function logout() {
+    document.getElementById('prof-locked').style.display = 'block';
+    document.getElementById('prof-unlocked').style.display = 'none';
+  }
+
+  // Keyboard shortcut
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>
+</body>
+</html>
