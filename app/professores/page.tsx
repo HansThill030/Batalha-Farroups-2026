@@ -214,13 +214,13 @@ export default function Professores() {
   )
 
   const pendentes = respostas.filter(r=>r.status==='pendente')
-  const abasConfig = [
-    {id:'placar',label:'🏆 Placar'},
-    {id:'tarefa',label:'📋 Tarefas'},
-    {id:'respostas',label:`📩 Respostas${pendentes.length>0?` (${pendentes.length})`:''}`,alert:pendentes.length>0},
-    {id:'aviso',label:'📢 Avisos'},
-    {id:'fotos',label:'🖼️ Fotos'},
-  ] as const
+  const abasConfig: { id: string; label: string; alert?: boolean }[] = [
+    {id:'placar',  label:'🏆 Placar'},
+    {id:'tarefa',  label:'📋 Tarefas'},
+    {id:'respostas',label:`📩 Respostas${pendentes.length>0?` (${pendentes.length})`:''}`, alert: pendentes.length>0},
+    {id:'aviso',   label:'📢 Avisos'},
+    {id:'fotos',   label:'🖼️ Fotos'},
+  ]
 
   return(
     <>
