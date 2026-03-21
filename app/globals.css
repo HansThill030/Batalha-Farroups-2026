@@ -3,9 +3,9 @@
 :root {
   --red: #e02020;
   --blue: #1a3fa8;
-  --bg: #07070f;
-  --bg2: #0d0d1a;
-  --bg3: #131320;
+  --bg: #000000;
+  --bg2: rgba(0,0,0,0.5);
+  --bg3: rgba(0,0,0,0.6);
   --text: #ffffff;
   --text-dim: rgba(255,255,255,0.5);
   --border: rgba(255,255,255,0.08);
@@ -15,24 +15,11 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
+  background: #000;
   color: var(--text);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
-  background-color: #07070f;
-}
-
-/* Fundo fixo com as luzes coloridas — igual à imagem de referência */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background-color: #07070f;
-  background-image:
-    radial-gradient(ellipse 50% 80% at -5% 20%, rgba(200, 15, 15, 0.75) 0%, rgba(140, 10, 10, 0.3) 40%, transparent 70%),
-    radial-gradient(ellipse 50% 80% at 105% 20%, rgba(15, 30, 180, 0.75) 0%, rgba(10, 20, 130, 0.3) 40%, transparent 70%);
-  pointer-events: none;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -69,7 +56,7 @@ button { cursor: pointer; font-family: 'Inter', sans-serif; }
 .page-header {
   padding: 2.5rem 5rem 1.5rem;
   border-bottom: 1px solid var(--border);
-  background: rgba(7, 7, 15, 0.75);
+  background: rgba(0,0,0,0.6);
   backdrop-filter: blur(16px);
   margin-top: 60px;
 }
