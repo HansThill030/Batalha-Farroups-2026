@@ -7,6 +7,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
+  background: #06060e;
 }
 
 .content {
@@ -28,13 +29,13 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--text-dim);
+  color: rgba(255,255,255,0.55);
   margin-bottom: 1rem;
 }
 
 .desc {
   font-size: 1rem;
-  color: var(--text-dim);
+  color: rgba(255,255,255,0.55);
   line-height: 1.7;
   max-width: 420px;
   margin: 0 auto 2.5rem;
@@ -47,26 +48,28 @@
   flex-wrap: wrap;
 }
 
+/* Barra de stats — fundo escuro sólido, corta a névoa */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: rgba(7, 7, 15, 0.65);
-  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: #06060e;
+  position: relative;
+  z-index: 2;
 }
 
 .stat {
   padding: 1.5rem;
   text-align: center;
-  border-right: 1px solid var(--border);
+  border-right: 1px solid rgba(255,255,255,0.08);
 }
 .stat:last-child { border-right: none; }
 
 .statNum {
   font-size: 1.8rem;
   font-weight: 900;
-  background: var(--grad);
+  background: linear-gradient(135deg, #e02020 0%, #1a3fa8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -76,7 +79,7 @@
 
 .statLabel {
   font-size: 0.7rem;
-  color: var(--text-dim);
+  color: rgba(255,255,255,0.5);
   margin-top: 0.3rem;
   display: block;
 }
@@ -94,12 +97,11 @@
   align-items: center;
   gap: 0.6rem;
 }
-
 .secTitle::before {
   content: '';
   width: 3px;
   height: 16px;
-  background: var(--grad);
+  background: linear-gradient(135deg, #e02020, #1a3fa8);
   border-radius: 2px;
 }
 
@@ -108,11 +110,11 @@
   gap: 1rem;
   align-items: flex-start;
   padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .avisoRow:last-child { border-bottom: none; }
 
-.avisoDate { font-size: 0.7rem; color: var(--text-dim); min-width: 70px; padding-top: 2px; }
+.avisoDate { font-size: 0.7rem; color: rgba(255,255,255,0.5); min-width: 70px; padding-top: 2px; }
 
 .avisoTag {
   display: inline-block;
@@ -124,7 +126,7 @@
 }
 
 .avisoTitle { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
-.avisoText { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; }
+.avisoText { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
 
 @media (max-width: 768px) {
   .stats { grid-template-columns: repeat(2, 1fr); }

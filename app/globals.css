@@ -3,9 +3,9 @@
 :root {
   --red: #e02020;
   --blue: #1a3fa8;
-  --bg: #000000;
-  --bg2: rgba(0,0,0,0.5);
-  --bg3: rgba(0,0,0,0.6);
+  --bg: #06060e;
+  --bg2: rgba(0,0,0,0.55);
+  --bg3: rgba(0,0,0,0.65);
   --text: #ffffff;
   --text-dim: rgba(255,255,255,0.5);
   --border: rgba(255,255,255,0.08);
@@ -15,7 +15,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background: #000;
+  background: #06060e;
   color: var(--text);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
@@ -56,7 +56,7 @@ button { cursor: pointer; font-family: 'Inter', sans-serif; }
 .page-header {
   padding: 2.5rem 5rem 1.5rem;
   border-bottom: 1px solid var(--border);
-  background: rgba(0,0,0,0.6);
+  background: rgba(6,6,14,0.7);
   backdrop-filter: blur(16px);
   margin-top: 60px;
 }
