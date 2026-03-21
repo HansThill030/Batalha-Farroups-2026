@@ -1,3 +1,4 @@
+/* ── HERO ── */
 .hero {
   position: relative;
   min-height: calc(100vh - 60px);
@@ -7,7 +8,59 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background: #06060e;
+  background-color: #0a0a14;
+}
+
+/* Blob vermelho — esquerda/topo */
+.hero::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: #cc0a0a;
+  filter: blur(90px);
+  opacity: 0.55;
+  top: -15%;
+  left: -15%;
+  animation: moveRed 18s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+/* Blob azul — direita/baixo */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: #0f2eb5;
+  filter: blur(90px);
+  opacity: 0.55;
+  bottom: -15%;
+  right: -15%;
+  animation: moveBlue 22s infinite alternate ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes moveRed {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(80px, 60px) scale(1.15); }
+}
+
+@keyframes moveBlue {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(-80px, -60px) scale(1.15); }
+}
+
+/* Glass overlay para suavizar tudo */
+.heroGlass {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(30px);
+  background: rgba(10, 10, 20, 0.25);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .content {
@@ -29,7 +82,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: rgba(255,255,255,0.5);
   margin-bottom: 1rem;
 }
 
@@ -48,13 +101,13 @@
   flex-wrap: wrap;
 }
 
-/* Barra de stats — fundo escuro sólido, corta a névoa */
+/* ── STATS — corta a névoa aqui ── */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid rgba(255,255,255,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  background: #06060e;
+  background: #0a0a14;
   position: relative;
   z-index: 2;
 }
@@ -84,6 +137,7 @@
   display: block;
 }
 
+/* ── AVISOS ── */
 .section {
   padding: 3rem 5rem;
   max-width: 1000px;
@@ -126,7 +180,7 @@
 }
 
 .avisoTitle { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
-.avisoText { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.avisoText  { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
 
 @media (max-width: 768px) {
   .stats { grid-template-columns: repeat(2, 1fr); }

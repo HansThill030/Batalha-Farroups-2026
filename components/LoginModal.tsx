@@ -9,15 +9,34 @@ const AuthContext = createContext<AuthCtx>({ isAuth: false, login: () => {}, log
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuth, setIsAuth] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    // Só lê o sessionStorage depois de montar no cliente
     setIsAuth(sessionStorage.getItem('prof_auth') === 'true')
   }, [])
 
-  const login = () => { sessionStorage.setItem('prof_auth', 'true'); setIsAuth(true) }
-  const logout = () => { sessionStorage.removeItem('prof_auth'); setIsAuth(false) }
+  const login = () => {
+    sessionStorage.setItem('prof_auth', 'true')
+    setIsAuth(true)
+  }
 
-  return <AuthContext.Provider value={{ isAuth, login, logout }}>{children}</AuthContext.Provider>
+  const logout = () => {
+    sessionStorage.removeItem('prof_auth')
+    setIsAuth(false)
+  }
+
+  // Não renderiza nada até montar — evita hydration mismatch
+  if (!mounted) {
+    return <AuthContext.Provider value={{ isAuth: false, login, logout }}>{children}</AuthContext.Provider>
+  }
+
+  return (
+    <AuthContext.Provider value={{ isAuth, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth() { return useContext(AuthContext) }

@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import styles from './page.module.css'
-import SmokeBackground from '@/components/SmokeBackground'
 
 const avisos = [
   { tag: 'Oficial', data: '18 Mar 2026', titulo: 'Bem-vindos à Batalha dos Farroups 2026!', texto: 'O site oficial está no ar. Em breve as primeiras tarefas serão publicadas.' },
@@ -11,9 +10,10 @@ const avisos = [
 export default function Home() {
   return (
     <>
-      {/* HERO — névoa fica só aqui */}
       <section className={styles.hero}>
-        <SmokeBackground />
+        {/* Glass overlay suaviza os blobs */}
+        <div className={styles.heroGlass} />
+
         <div className={styles.content}>
           <Image
             src="/logo-full.png"
@@ -34,7 +34,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS — separa o hero, sem névoa */}
       <div className={styles.stats}>
         {[
           { num: '55+',  label: 'Tarefas Teóricas' },
@@ -49,7 +48,6 @@ export default function Home() {
         ))}
       </div>
 
-      {/* AVISOS */}
       <section className={styles.section}>
         <div className={styles.secTitle}>Últimos Avisos</div>
         {avisos.map((a, i) => (

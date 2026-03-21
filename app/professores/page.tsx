@@ -1,5 +1,6 @@
 'use client'
 import { useAuth } from '@/components/LoginModal'
+import { useEffect, useState } from 'react'
 import styles from './professores.module.css'
 
 const tabs = [
@@ -11,6 +12,21 @@ const tabs = [
 
 export default function Professores() {
   const { isAuth, logout } = useAuth()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => { setMounted(true) }, [])
+
+  // Enquanto não montou no cliente, mostra tela neutra
+  if (!mounted) {
+    return (
+      <>
+        <div className="page-header">
+          <h1 className="page-title">Área dos Professores</h1>
+          <p className="page-sub">Carregando...</p>
+        </div>
+      </>
+    )
+  }
 
   if (!isAuth) {
     return (
@@ -22,7 +38,10 @@ export default function Professores() {
         <div className={styles.locked}>
           <span className={styles.lockEmoji}>🔒</span>
           <h2>Acesso Restrito</h2>
-          <p>Faça login pelo botão <strong>"Área do Professor"</strong> no menu superior.</p>
+          <p>Clique em <strong>"Área do Professor"</strong> no menu superior para fazer login.</p>
+          <p style={{ marginTop: '0.5rem', fontSize: '0.8rem', opacity: 0.6 }}>
+            Usuário: <code>professor</code> · Senha: <code>2026</code>
+          </p>
         </div>
       </>
     )
@@ -46,7 +65,9 @@ export default function Professores() {
       </div>
 
       <div className={styles.footer}>
-        <button className="btn-ghost btn-sm" onClick={logout}>Sair da área administrativa</button>
+        <button className="btn-ghost btn-sm" onClick={logout}>
+          Sair da área administrativa
+        </button>
       </div>
     </>
   )
