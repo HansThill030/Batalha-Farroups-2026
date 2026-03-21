@@ -55,3 +55,31 @@
   .links { display: none; }
   .nav { padding: 0 1.5rem; }
 }
+
+.actions { display: flex; gap: 0.5rem; align-items: center; }
+
+.turmaLoginBtn {
+  font-size: 0.75rem; font-weight: 600;
+  padding: 0.4rem 0.9rem; border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent; color: rgba(255,255,255,0.7);
+  text-decoration: none; transition: all 0.2s;
+}
+.turmaLoginBtn:hover { border-color: rgba(255,255,255,0.35); color: #fff; }
+
+.turmaBtn {
+  font-size: 0.78rem; font-weight: 700;
+  padding: 0.4rem 0.9rem; border-radius: 6px;
+  background: rgba(224,32,32,0.2); color: #ff7b7b;
+  border: 1px solid rgba(224,32,32,0.3); text-decoration: none;
+  transition: all 0.2s;
+}
+.turmaBtn:hover { background: rgba(224,32,32,0.3); }
+
+.sairBtn {
+  font-size: 0.72rem; font-weight: 500;
+  padding: 0.35rem 0.7rem; border-radius: 5px;
+  background: none; border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.2s;
+}
+.sairBtn:hover { border-color: rgba(255,255,255,0.25); color: rgba(255,255,255,0.7); }

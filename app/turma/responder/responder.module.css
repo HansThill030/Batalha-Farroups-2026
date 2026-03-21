@@ -1,0 +1,90 @@
+.page { min-height: 100vh; background: #06060e; padding-top: 60px; }
+
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2rem; border-bottom: 2px solid;
+  background: rgba(6,6,14,0.95); backdrop-filter: blur(12px);
+  position: sticky; top: 60px; z-index: 10;
+}
+.headerLeft { display: flex; align-items: center; gap: 0.75rem; }
+.turmaTag { font-size: 0.88rem; font-weight: 800; padding: 0.3rem 0.9rem; border-radius: 6px; }
+.headerSub { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+.headerRight { display: flex; align-items: center; gap: 1rem; }
+
+.timer { font-size: 2rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+.urgente { animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+.sairBtn {
+  font-size: 0.72rem; font-weight: 600; padding: 0.35rem 0.9rem;
+  border-radius: 6px; border: 1px solid rgba(255,255,255,0.15);
+  background: transparent; color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.2s;
+}
+.sairBtn:hover { color: #fff; border-color: rgba(255,255,255,0.3); }
+
+.timerBarWrap { height: 4px; background: rgba(255,255,255,0.06); }
+.timerBar { height: 100%; transition: width 1s linear; }
+
+.content { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+.estado { text-align: center; padding: 4rem 2rem; }
+.estadoIcon { font-size: 3rem; margin-bottom: 1rem; }
+.estado h2 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+.estado p  { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+
+.tarefaCard {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px; padding: 1.75rem;
+}
+.tarefaMeta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.tipoBadge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.65rem; border-radius: 4px; }
+.teorica  { background: rgba(26,63,168,0.3); color: #7b9fff; }
+.pratica  { background: rgba(224,32,32,0.25); color: #ff7b7b; }
+.tarefaNum { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+.tarefaTitulo { font-size: 1.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }
+.tarefaDesc { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+.tarefaImg { max-width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.08); }
+
+.formCard {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem;
+}
+.formTitle { font-size: 1rem; font-weight: 700; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.05em; }
+.field textarea {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: #fff; padding: 0.8rem 1rem;
+  font-size: 0.95rem; font-family: 'Inter',sans-serif;
+  outline: none; resize: vertical; transition: border-color 0.2s; line-height: 1.6;
+}
+.field textarea:focus { border-color: rgba(255,255,255,0.3); }
+.fileInput { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; padding: 0.6rem; cursor: pointer; font-size: 0.85rem; }
+
+.ouLabel { text-align: center; font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+
+.preview { display: flex; flex-direction: column; gap: 0.5rem; }
+.preview img { max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08); }
+.preview button { font-size: 0.72rem; color: #f87171; background: none; border: none; cursor: pointer; text-align: left; }
+
+.erro { font-size: 0.78rem; color: #f87171; }
+
+.enviarBtn {
+  width: 100%; padding: 1rem; border-radius: 8px; border: none;
+  color: #fff; font-size: 0.9rem; font-weight: 700;
+  cursor: pointer; font-family: 'Inter',sans-serif;
+  transition: opacity 0.2s; margin-top: 0.25rem;
+}
+.enviarBtn:hover:not(:disabled) { opacity: 0.85; }
+.enviarBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+.aviso { font-size: 0.72rem; color: rgba(255,255,255,0.25); text-align: center; }
+
+.enviado {
+  background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 12px; padding: 2.5rem; text-align: center;
+}
+.enviadoIcon { font-size: 2.5rem; font-weight: 900; margin-bottom: 0.75rem; }
+.enviado h3 { font-size: 1.2rem; font-weight: 700; color: #4ade80; margin-bottom: 0.5rem; }
+.enviado p  { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
