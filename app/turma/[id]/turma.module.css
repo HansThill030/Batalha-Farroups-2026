@@ -1,0 +1,81 @@
+.page { min-height: 100vh; background: #06060e; padding-top: 60px; }
+
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 2rem; border-bottom: 2px solid;
+  background: rgba(6,6,14,0.95); backdrop-filter: blur(12px);
+  position: sticky; top: 60px; z-index: 10;
+}
+.headerLeft { display: flex; align-items: center; gap: 1rem; }
+.turmaTag { font-size: 0.85rem; font-weight: 800; padding: 0.35rem 0.9rem; border-radius: 6px; letter-spacing: 0.05em; }
+.headerTitle { font-size: 0.85rem; color: rgba(255,255,255,0.5); }
+
+.timer { font-size: 2.2rem; font-weight: 900; font-variant-numeric: tabular-nums; }
+.urgente { animation: pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+
+.timerBarWrap { height: 4px; background: rgba(255,255,255,0.06); }
+.timerBar { height: 100%; transition: width 1s linear; }
+.timerBarUrgente { animation: pulse 1s infinite; }
+
+.content { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+.estado { text-align: center; padding: 4rem 2rem; color: rgba(255,255,255,0.5); }
+.estadoIcon { font-size: 3rem; margin-bottom: 1rem; }
+.estado h2 { font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+.estado p  { font-size: 0.9rem; line-height: 1.6; }
+
+.tarefaBox { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.75rem; }
+.tarefaMeta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.tipoBadge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.2rem 0.65rem; border-radius: 4px; }
+.teoricaBadge { background: rgba(26,63,168,0.3); color: #7b9fff; }
+.praticaBadge { background: rgba(224,32,32,0.25); color: #ff7b7b; }
+.tarefaNum { font-size: 0.75rem; color: rgba(255,255,255,0.4); }
+.tarefaTitulo { font-size: 1.6rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }
+.tarefaDesc { font-size: 0.95rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+.tarefaImg { max-width: 100%; border-radius: 8px; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.08); }
+
+.formBox { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.75rem; display: flex; flex-direction: column; gap: 1rem; }
+.formTitle { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.field label { font-size: 0.72rem; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+.field textarea {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px; color: #fff; padding: 0.8rem 1rem;
+  font-size: 0.95rem; font-family: 'Inter',sans-serif; outline: none;
+  resize: vertical; transition: border-color 0.2s; line-height: 1.6;
+}
+.field textarea:focus { border-color: rgba(255,255,255,0.3); }
+.fileInput { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; padding: 0.6rem; cursor: pointer; font-size: 0.85rem; }
+
+.fieldOr { text-align: center; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+
+.previewWrap { display: flex; flex-direction: column; gap: 0.5rem; }
+.preview { max-width: 100%; max-height: 200px; object-fit: contain; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); }
+.removeImg { font-size: 0.75rem; color: #f87171; background: none; border: none; cursor: pointer; text-align: left; }
+
+.erro { font-size: 0.78rem; color: #f87171; }
+
+.enviarBtn {
+  width: 100%; padding: 1rem; border-radius: 8px; border: none;
+  color: #fff; font-size: 0.9rem; font-weight: 700; cursor: pointer;
+  transition: opacity 0.2s; font-family: 'Inter',sans-serif;
+  margin-top: 0.5rem;
+}
+.enviarBtn:hover:not(:disabled) { opacity: 0.85; }
+.enviarBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.avisoUnico { font-size: 0.75rem; color: rgba(255,255,255,0.3); text-align: center; }
+
+.enviado { background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.3); border-radius: 12px; padding: 2.5rem; text-align: center; }
+.enviadoIcon { font-size: 2.5rem; color: #4ade80; margin-bottom: 0.75rem; }
+.enviado h3 { font-size: 1.2rem; font-weight: 700; color: #4ade80; margin-bottom: 0.5rem; }
+.enviado p  { font-size: 0.88rem; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+.tempoEsgotado { text-align: center; padding: 3rem 2rem; color: rgba(255,255,255,0.4); }
+.tempoEsgotado h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+.erro404 { text-align: center; padding: 8rem 2rem; }
+.erro404 h1 { font-size: 2rem; margin-bottom: 1rem; }
+.erro404 p  { color: rgba(255,255,255,0.5); }

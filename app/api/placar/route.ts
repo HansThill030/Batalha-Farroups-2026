@@ -1,40 +1,52 @@
 import { NextResponse } from 'next/server'
 
-const SHEET_ID = process.env.GOOGLE_SHEET_ID || ''
-const API_KEY  = process.env.GOOGLE_API_KEY  || ''
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url)
+  const sheetId = searchParams.get('sheetId') || process.env.GOOGLE_SHEET_ID || ''
+  const apiKey  = searchParams.get('apiKey')  || process.env.GOOGLE_API_KEY  || ''
 
-// GET — lê o placar da planilha (público)
-export async function GET() {
+  if (!sheetId || !apiKey) {
+    return NextResponse.json({ error: 'sheetId e apiKey são obrigatórios' }, { status: 400 })
+  }
+
   try {
-    if (!SHEET_ID || !API_KEY) {
-      // Dados de exemplo se não houver credenciais configuradas
-      return NextResponse.json([
-        { pos: 1, nome: 'Equipe Ouro',     cor: '#fbbf24', pts: 4200 },
-        { pos: 2, nome: 'Equipe Prata',    cor: '#d1d5db', pts: 3850 },
-        { pos: 3, nome: 'Equipe Bronze',   cor: '#cd7f32', pts: 3300 },
-        { pos: 4, nome: 'Equipe Azul',     cor: '#2952cc', pts: 2900 },
-        { pos: 5, nome: 'Equipe Vermelha', cor: '#e02020', pts: 2400 },
-      ])
+    // Primeiro tenta descobrir o nome da primeira aba
+    const metaUrl = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}?key=${apiKey}&fields=sheets.properties.title`
+    const metaRes = await fetch(metaUrl)
+    const metaData = await metaRes.json()
+
+    if (metaData.error) {
+      return NextResponse.json({ error: metaData.error.message }, { status: 400 })
     }
 
-    // Lê da aba "Placar" colunas A (nome), B (cor), C (pts)
-    const url = `https://sheets.googleapis.com/v4/spreadsheets/${SHEET_ID}/values/Placar!A2:C?key=${API_KEY}`
-    const res = await fetch(url, { next: { revalidate: 60 } }) // cache 60s
-    const data = await res.json()
-    const rows: string[][] = data.values || []
+    // Pega o nome da primeira aba da planilha
+    const primeiraAba: string = metaData.sheets?.[0]?.properties?.title || 'Sheet1'
+
+    // Tenta "Placar" primeiro, se falhar usa o nome da primeira aba
+    const tentativas = ['Placar', primeiraAba, 'Sheet1', 'Página1']
+    let rows: string[][] = []
+
+    for (const aba of tentativas) {
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${encodeURIComponent(aba)}!A2:C?key=${apiKey}`
+      const res = await fetch(url)
+      const data = await res.json()
+      if (!data.error && data.values) {
+        rows = data.values
+        break
+      }
+    }
 
     const equipes = rows
-      .map((row, i) => ({
-        pos: i + 1,
-        nome: row[0] || `Equipe ${i + 1}`,
-        cor:  row[1] || '#888888',
-        pts:  parseInt(row[2]) || 0,
+      .filter(r => r[0])
+      .map(r => ({
+        nome: r[0] || 'Equipe',
+        cor:  r[1] || '#888888',
+        pts:  parseInt(r[2]) || 0,
       }))
       .sort((a, b) => b.pts - a.pts)
-      .map((e, i) => ({ ...e, pos: i + 1 }))
 
     return NextResponse.json(equipes)
   } catch (e) {
-    return NextResponse.json({ error: 'Erro ao buscar placar' }, { status: 500 })
+    return NextResponse.json({ error: 'Erro ao buscar planilha' }, { status: 500 })
   }
 }
