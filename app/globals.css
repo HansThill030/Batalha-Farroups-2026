@@ -3,10 +3,9 @@
 :root {
   --red: #e02020;
   --blue: #1a3fa8;
-  --blue-light: #2952cc;
-  --bg: #080810;
-  --bg2: #0f0f1a;
-  --bg3: #16162a;
+  --bg: #07070f;
+  --bg2: #0d0d1a;
+  --bg3: #131320;
   --text: #ffffff;
   --text-dim: rgba(255,255,255,0.5);
   --border: rgba(255,255,255,0.08);
@@ -16,76 +15,68 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  background-color: #080810;
-  background-image:
-    radial-gradient(ellipse 55% 70% at 0% 35%, rgba(180, 20, 20, 0.55) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 70% at 100% 35%, rgba(20, 40, 160, 0.55) 0%, transparent 65%);
-  background-attachment: fixed;
   color: var(--text);
   font-family: 'Inter', sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #07070f;
+}
+
+/* Fundo fixo com as luzes coloridas — igual à imagem de referência */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #07070f;
+  background-image:
+    radial-gradient(ellipse 50% 80% at -5% 20%, rgba(200, 15, 15, 0.75) 0%, rgba(140, 10, 10, 0.3) 40%, transparent 70%),
+    radial-gradient(ellipse 50% 80% at 105% 20%, rgba(15, 30, 180, 0.75) 0%, rgba(10, 20, 130, 0.3) 40%, transparent 70%);
+  pointer-events: none;
 }
 
 a { text-decoration: none; color: inherit; }
 button { cursor: pointer; font-family: 'Inter', sans-serif; }
 
 .btn-primary {
-  font-size: 0.82rem;
-  font-weight: 600;
-  background: var(--grad);
-  color: #fff;
-  border: none;
-  padding: 0.75rem 1.8rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: opacity 0.2s;
-  display: inline-block;
+  font-size: 0.82rem; font-weight: 600;
+  background: var(--grad); color: #fff;
+  border: none; padding: 0.75rem 1.8rem;
+  border-radius: 8px; cursor: pointer;
+  transition: opacity 0.2s; display: inline-block;
 }
 .btn-primary:hover { opacity: 0.85; }
 
 .btn-ghost {
-  font-size: 0.82rem;
-  font-weight: 500;
-  background: transparent;
-  color: var(--text);
+  font-size: 0.82rem; font-weight: 500;
+  background: transparent; color: var(--text);
   border: 1px solid var(--border);
-  padding: 0.75rem 1.8rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: inline-block;
+  padding: 0.75rem 1.8rem; border-radius: 8px;
+  cursor: pointer; transition: all 0.2s; display: inline-block;
 }
 .btn-ghost:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
 
 .btn-danger {
-  font-size: 0.75rem;
-  font-weight: 600;
-  background: rgba(224,32,32,0.15);
-  color: #f87171;
+  font-size: 0.75rem; font-weight: 600;
+  background: rgba(224,32,32,0.15); color: #f87171;
   border: 1px solid rgba(224,32,32,0.3);
-  padding: 0.45rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
+  padding: 0.45rem 1rem; border-radius: 6px;
+  cursor: pointer; transition: all 0.2s;
 }
 .btn-danger:hover { background: rgba(224,32,32,0.25); }
-
 .btn-sm { padding: 0.45rem 1rem; font-size: 0.75rem; border-radius: 6px; }
 
 .page-header {
   padding: 2.5rem 5rem 1.5rem;
   border-bottom: 1px solid var(--border);
-  background: rgba(8, 8, 16, 0.7);
-  backdrop-filter: blur(12px);
+  background: rgba(7, 7, 15, 0.75);
+  backdrop-filter: blur(16px);
   margin-top: 60px;
 }
-
 .page-title { font-size: 2rem; font-weight: 800; }
 .page-sub { font-size: 0.85rem; color: var(--text-dim); margin-top: 0.3rem; }
 
 .accent { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.accent-blue { color: #7b9fff; }
 
 @media (max-width: 768px) {
   .page-header { padding: 1.5rem 1.25rem; }

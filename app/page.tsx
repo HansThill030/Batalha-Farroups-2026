@@ -15,8 +15,8 @@ export default function Home() {
           <Image
             src="/logo-full.png"
             alt="Batalha dos Farroups"
-            width={480}
-            height={380}
+            width={440}
+            height={350}
             className={styles.logoFull}
             priority
           />

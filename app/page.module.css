@@ -16,12 +16,11 @@
 }
 
 .logoFull {
-  width: 420px;
+  width: 440px;
   max-width: 88vw;
   height: auto;
   margin: 0 auto 1.5rem;
   display: block;
-  filter: drop-shadow(0 0 40px rgba(180, 20, 20, 0.3));
 }
 
 .year {
@@ -53,7 +52,7 @@
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  background: rgba(8, 8, 16, 0.6);
+  background: rgba(7, 7, 15, 0.65);
   backdrop-filter: blur(12px);
 }
 
@@ -113,37 +112,19 @@
 }
 .avisoRow:last-child { border-bottom: none; }
 
-.avisoDate {
-  font-size: 0.7rem;
-  color: var(--text-dim);
-  min-width: 70px;
-  padding-top: 2px;
-}
+.avisoDate { font-size: 0.7rem; color: var(--text-dim); min-width: 70px; padding-top: 2px; }
 
 .avisoTag {
   display: inline-block;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.1rem 0.5rem;
-  border-radius: 3px;
-  background: rgba(26,63,168,0.3);
-  color: #7b9fff;
+  font-size: 0.6rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.1rem 0.5rem; border-radius: 3px;
+  background: rgba(26,63,168,0.3); color: #7b9fff;
   margin-bottom: 0.3rem;
 }
 
-.avisoTitle {
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 0.2rem;
-}
-
-.avisoText {
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  line-height: 1.5;
-}
+.avisoTitle { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+.avisoText { font-size: 0.82rem; color: var(--text-dim); line-height: 1.5; }
 
 @media (max-width: 768px) {
   .stats { grid-template-columns: repeat(2, 1fr); }

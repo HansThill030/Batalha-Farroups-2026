@@ -22,7 +22,7 @@ export default function Navbar() {
     <>
       <nav className={styles.nav}>
         <Link href="/" className={styles.logo}>
-          <Image src="/logo-full.png" alt="Batalha dos Farroups" width={36} height={28} style={{ objectFit: 'contain' }} />
+          <Image src="/logo-icon.png" alt="Logo" width={36} height={36} style={{ objectFit: 'contain', borderRadius: '6px' }} />
         </Link>
         <ul className={styles.links}>
           {links.map(l => (
