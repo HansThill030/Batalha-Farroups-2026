@@ -1,0 +1,152 @@
+.hero {
+  position: relative;
+  min-height: calc(100vh - 60px);
+  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  padding: 3rem 2rem;
+}
+
+.logoFull {
+  width: 420px;
+  max-width: 88vw;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  display: block;
+  filter: drop-shadow(0 0 40px rgba(180, 20, 20, 0.3));
+}
+
+.year {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.desc {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 auto 2.5rem;
+}
+
+.btns {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(8, 8, 16, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+.stat {
+  padding: 1.5rem;
+  text-align: center;
+  border-right: 1px solid var(--border);
+}
+.stat:last-child { border-right: none; }
+
+.statNum {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  line-height: 1;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.section {
+  padding: 3rem 5rem;
+  max-width: 1000px;
+}
+
+.secTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.secTitle::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--grad);
+  border-radius: 2px;
+}
+
+.avisoRow {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.avisoRow:last-child { border-bottom: none; }
+
+.avisoDate {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  min-width: 70px;
+  padding-top: 2px;
+}
+
+.avisoTag {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.1rem 0.5rem;
+  border-radius: 3px;
+  background: rgba(26,63,168,0.3);
+  color: #7b9fff;
+  margin-bottom: 0.3rem;
+}
+
+.avisoTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.avisoText {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: 2rem 1.25rem; }
+  .logoFull { width: 300px; }
+}
