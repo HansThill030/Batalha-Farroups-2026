@@ -11,8 +11,14 @@ export default function Home() {
   return (
     <>
       <section className={styles.hero}>
-        {/* Glass overlay suaviza os blobs */}
-        <div className={styles.heroGlass} />
+
+        {/* Mesh gradient — 4 bolas animadas com blur alto */}
+        <div className={styles.meshContainer}>
+          <div className={`${styles.ball} ${styles.ball1}`} />
+          <div className={`${styles.ball} ${styles.ball2}`} />
+          <div className={`${styles.ball} ${styles.ball3}`} />
+          <div className={`${styles.ball} ${styles.ball4}`} />
+        </div>
 
         <div className={styles.content}>
           <Image

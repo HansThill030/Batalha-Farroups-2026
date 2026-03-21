@@ -1,3 +1,68 @@
+/* ── MESH BACKGROUND ── */
+.meshContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  filter: blur(80px);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ball {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.65;
+  animation: moveMesh 20s infinite alternate;
+}
+
+.ball1 {
+  background: #cc0a0a;
+  width: 650px;
+  height: 650px;
+  top: -15%;
+  left: -10%;
+  animation-duration: 25s;
+}
+
+.ball2 {
+  background: #0a1fa8;
+  width: 600px;
+  height: 600px;
+  top: 30%;
+  right: -10%;
+  animation-duration: 18s;
+  animation-delay: -5s;
+}
+
+.ball3 {
+  background: #8b0000;
+  width: 500px;
+  height: 500px;
+  bottom: -10%;
+  left: 10%;
+  animation-duration: 22s;
+  animation-delay: -3s;
+}
+
+.ball4 {
+  background: #0d2fd4;
+  width: 400px;
+  height: 400px;
+  top: 5%;
+  left: 45%;
+  animation-duration: 15s;
+  animation-delay: -8s;
+}
+
+@keyframes moveMesh {
+  0%   { transform: translate(0, 0) rotate(0deg) scale(1); }
+  50%  { transform: translate(80px, 80px) rotate(90deg) scale(1.2); }
+  100% { transform: translate(-40px, 120px) rotate(180deg) scale(1); }
+}
+
 /* ── HERO ── */
 .hero {
   position: relative;
@@ -8,59 +73,7 @@
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background-color: #0a0a14;
-}
-
-/* Blob vermelho — esquerda/topo */
-.hero::before {
-  content: '';
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: #cc0a0a;
-  filter: blur(90px);
-  opacity: 0.55;
-  top: -15%;
-  left: -15%;
-  animation: moveRed 18s infinite alternate ease-in-out;
-  pointer-events: none;
-}
-
-/* Blob azul — direita/baixo */
-.hero::after {
-  content: '';
-  position: absolute;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: #0f2eb5;
-  filter: blur(90px);
-  opacity: 0.55;
-  bottom: -15%;
-  right: -15%;
-  animation: moveBlue 22s infinite alternate ease-in-out;
-  pointer-events: none;
-}
-
-@keyframes moveRed {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(80px, 60px) scale(1.15); }
-}
-
-@keyframes moveBlue {
-  from { transform: translate(0, 0) scale(1); }
-  to   { transform: translate(-80px, -60px) scale(1.15); }
-}
-
-/* Glass overlay para suavizar tudo */
-.heroGlass {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(30px);
-  background: rgba(10, 10, 20, 0.25);
-  pointer-events: none;
-  z-index: 1;
+  background: #06060e;
 }
 
 .content {
@@ -101,13 +114,13 @@
   flex-wrap: wrap;
 }
 
-/* ── STATS — corta a névoa aqui ── */
+/* ── STATS — corta o efeito aqui ── */
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid rgba(255,255,255,0.08);
   border-bottom: 1px solid rgba(255,255,255,0.08);
-  background: #0a0a14;
+  background: #06060e;
   position: relative;
   z-index: 2;
 }
@@ -167,9 +180,7 @@
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 .avisoRow:last-child { border-bottom: none; }
-
 .avisoDate { font-size: 0.7rem; color: rgba(255,255,255,0.5); min-width: 70px; padding-top: 2px; }
-
 .avisoTag {
   display: inline-block;
   font-size: 0.6rem; font-weight: 600;
@@ -178,7 +189,6 @@
   background: rgba(26,63,168,0.3); color: #7b9fff;
   margin-bottom: 0.3rem;
 }
-
 .avisoTitle { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
 .avisoText  { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
 
@@ -186,4 +196,6 @@
   .stats { grid-template-columns: repeat(2, 1fr); }
   .section { padding: 2rem 1.25rem; }
   .logoFull { width: 300px; }
+  .ball { display: none; }
+  .ball1, .ball2 { display: block; width: 300px; height: 300px; }
 }
